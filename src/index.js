@@ -22,6 +22,7 @@ export default class Headroom extends Component {
     pinStart: PropTypes.number,
     style: PropTypes.object,
     calcHeightOnResize: PropTypes.bool,
+    forcePin: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -36,6 +37,7 @@ export default class Headroom extends Component {
     wrapperStyle: {},
     pinStart: 0,
     calcHeightOnResize: true,
+    forcePin: false,
   };
 
   static getDerivedStateFromProps (props, state) {
@@ -255,7 +257,7 @@ export default class Headroom extends Component {
         this.state
       )
 
-      if (action === 'pin') {
+      if (action === 'pin' || this.props.forcePin) {
         this.pin()
       } else if (action === 'unpin') {
         this.unpin()
